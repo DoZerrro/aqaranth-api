@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dq.aqaranth.domain.todo.mapper.TodoMapper">
+
+    <select id="todoList" resultType="com.dq.aqaranth.domain.todo.dto.TodoDTO">
+        select * from tbl_todo
+    </select>
+
+    <select id="todoRead" resultType="com.dq.aqaranth.domain.todo.dto.TodoDTO">
+        select * from tbl_todo where tno=#{tno}
+    </select>
+
+    <insert id="todoAdd">
+        insert into tbl_todo (title, memo, dueDate) values (#{title}, #{memo}, #{dueDate})
+        <selectKey keyProperty="tno" resultType="int" order="AFTER">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <delete id="todoDelete">
+        delete from tbl_todo where tno=#{tno}
+    </delete>
+
+    <update id="todoModify">
+        update tbl_todo
+            set title=#{title}, memo=#{memo}, dueDate=#{dueDate}, complete=#{complete}
+        where tno=#{tno}
+    </update>
+
+</mapper>
