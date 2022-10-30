@@ -1,10 +1,12 @@
 package com.dq.aqaranth.domain.todo.controller;
 
+import com.dq.aqaranth.domain.todo.dto.PageRequestDTO;
 import com.dq.aqaranth.domain.todo.dto.TodoDTO;
 import com.dq.aqaranth.domain.todo.service.TodoService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,5 +52,15 @@ public class TodoController {
     @PutMapping("/modify/{tno}")
     public Integer todoModify(@RequestBody TodoDTO todoDTO) {
         return todoService.todoModify(todoDTO);
+    }
+
+    //Todo Paging
+    @ApiOperation(value = "Todo Paging", notes = "Todo Paging 입니다.")
+    @GetMapping("/paging")
+    public void list(PageRequestDTO pageRequestDTO, Model model) {
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        log.info(pageRequestDTO);
+
+        model.addAttribute("result", todoService.listPage(pageRequestDTO));
     }
 }

@@ -1,5 +1,7 @@
 package com.dq.aqaranth.domain.todo.service;
 
+import com.dq.aqaranth.domain.todo.dto.PageRequestDTO;
+import com.dq.aqaranth.domain.todo.dto.PageResponseDTO;
 import com.dq.aqaranth.domain.todo.dto.TodoDTO;
 import com.dq.aqaranth.domain.todo.mapper.TodoMapper;
 import lombok.RequiredArgsConstructor;
@@ -40,4 +42,11 @@ public class TodoService {
         return todoMapper.todoModify(todoDTO);
     };
 
+    //Todo Paging
+    public PageResponseDTO<TodoDTO> listPage(PageRequestDTO pageRequestDTO) {
+        List<TodoDTO> dtoList = todoMapper.listPage(pageRequestDTO);
+        int total = todoMapper.listCount(pageRequestDTO);
+
+        return new PageResponseDTO<>(pageRequestDTO,total, dtoList);
+    }
 }

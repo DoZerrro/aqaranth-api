@@ -30,4 +30,11 @@
         where tno=#{tno}
     </update>
 
+    <select id="listPage" resultType="com.dq.aqaranth.domain.todo.dto.TodoDTO">
+        Select * from tbl_todo where tno > 0 limit  #{skip}, #{size}
+    </select>
+    <select id="listCount" resultType="java.lang.Integer">
+        select count(tno) from tbl_todo
+    </select>
+
 </mapper>
