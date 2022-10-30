@@ -1,6 +1,7 @@
 package com.dq.aqaranth.domain.todo.controller;
 
 import com.dq.aqaranth.domain.todo.dto.PageRequestDTO;
+import com.dq.aqaranth.domain.todo.dto.PageResponseDTO;
 import com.dq.aqaranth.domain.todo.dto.TodoDTO;
 import com.dq.aqaranth.domain.todo.service.TodoService;
 import io.swagger.annotations.ApiOperation;
@@ -57,10 +58,10 @@ public class TodoController {
     //Todo Paging
     @ApiOperation(value = "Todo Paging", notes = "Todo Paging 입니다.")
     @GetMapping("/paging")
-    public void list(PageRequestDTO pageRequestDTO, Model model) {
+    public PageResponseDTO list(PageRequestDTO pageRequestDTO, Model model) {
         log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         log.info(pageRequestDTO);
-
-        model.addAttribute("result", todoService.listPage(pageRequestDTO));
+        log.info(todoService.listPage(pageRequestDTO));
+        return todoService.listPage(pageRequestDTO);
     }
 }

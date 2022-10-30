@@ -1,6 +1,7 @@
 package com.dq.aqaranth.domain.todo.service;
 
 import com.dq.aqaranth.domain.todo.dto.PageRequestDTO;
+import com.dq.aqaranth.domain.todo.dto.PageResponseDTO;
 import com.dq.aqaranth.domain.todo.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class TodoServiceTest {
                 .page(1)
                 .size(10)
                 .build();
-        List<TodoDTO> listPage = todoService.listPage(pageRequestDTO).getDtoList();
-        listPage.forEach(log::info);
+        PageResponseDTO<TodoDTO> listPage = todoService.listPage(pageRequestDTO);
+        log.info(listPage);
     }
 }
