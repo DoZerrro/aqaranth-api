@@ -13,8 +13,6 @@ public class PageResponseDTO<E> {
     private boolean prev, next;
     private int total;
 
-    private String link;
-
     private List<E> dtoList;
 
     private PageRequestDTO pageRequestDTO;
